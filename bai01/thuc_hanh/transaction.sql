@@ -17,13 +17,13 @@ limit 10
 -- Lấy ra số lượng bán được của từng sản phẩm trong tháng 9 năm 2013. Kết quả trả ra sắp xếp theo số lượng từ cao tới thấp
 
 select ProductID
-, count(Quantity), TransactionDate
+, sum(Quantity), TransactionDate
 from transactionhistory t
 where 
 	year(TransactionDate) = 2013
 	and month(TransactionDate) = 9
 group by ProductID 
-order by count(Quantity) desc
+order by sum(Quantity) desc
 
 
 -- Cho biết giá trị trung bình của mỗi đơn hàng (order) trong tháng 10 năm 2013. Kết quả sắp xếp theo thứ tự giảm dần giá trị đơn hàng
@@ -63,5 +63,3 @@ from (
 select *, (Quantity * ActualCost) as Value
 from transactionhistory 
 ) abc;
-
-
